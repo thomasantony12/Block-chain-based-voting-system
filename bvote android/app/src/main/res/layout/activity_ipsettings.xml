@@ -1,0 +1,47 @@
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:background="@drawable/p2"
+        android:padding="30dp"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="IP SETTINGS"
+            android:layout_gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_height="wrap_content"
+            android:text="Please Enter Your IP Address" />
+
+        <EditText
+            android:id="@+id/etip"
+            android:layout_marginTop="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:ems="10" >
+
+            <requestFocus />
+        </EditText>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btsubmit"
+            android:background="@drawable/button_bg"
+            android:textColor="#fff"
+            android:layout_width="250dp"
+            android:layout_marginTop="30dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Submit" />
+
+    </LinearLayout>
+
