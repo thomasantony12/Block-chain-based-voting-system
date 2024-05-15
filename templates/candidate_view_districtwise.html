@@ -1,0 +1,50 @@
+{% include'candidate_header.html' %}
+<section id="intro">
+<div class="intro-container wow fadeIn">
+	<div class="scroll-bg" style="background: #373737;  padding: 10px; border-radius: 20px;  width: 700px; margin: 10% auto;">
+    	<div class="scroll-div" style="  width: 700px; background: #373737; height: 600px; overflow: hidden; overflow-y: scroll;">
+      		<div class="scroll-object" style="  color: white; font-family: cursive; font-size: 15px; padding: 20px;">
+				<center>
+					<h1 style="color: white">DISTRICT WISE RESULT</h1><br>
+					<form>
+						<table class="table" style=" color: white;">
+							<tr>
+								<th>Sl.no</th>
+								<th>District name</th>
+							</tr>
+							{% for row in data['district'] %}
+							<tr>
+								<td>{{loop.index}}</td>
+								<td>{{row['district']}}</td>
+								<td><a href="?action=result&id={{row['district_id']}}" class="btn btn-success">VIEW RESULT</a></td>
+									
+							</tr>
+							{%endfor%}
+						</table>
+					</form>
+					{% if data['dis_result'] %}
+						<center>
+							<h1>RESULT</h1>
+							<form method="post">
+								<table class="table" style="color: white">
+									<tr>
+										<th>Sl.no</th>
+										<th>Candidate name</th>
+										<th>Total vote</th>
+									</tr>
+									{% for row in data['dis_result'] %}
+									<tr>
+										<td>{{loop.index}}</td>
+										<td>{{row['cand_name']}}</td>
+					 					<td>{{row['vote']}}</td>
+									</tr>
+									{%endfor%}
+								</table>
+							</form>
+						</center>
+					{% endif %}
+				</center>
+			</div>
+		</div>
+	</div>
+{% include'footer.html' %}

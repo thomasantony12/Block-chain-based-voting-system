@@ -1,0 +1,79 @@
+{% include'admin_header.html' %}
+<section id="intro">
+<div class="intro-container wow fadeIn">
+      <div class="scroll-bg" style="background: #373737;  padding: 10px; border-radius: 20px;  width: 800px; margin: 10% auto;">
+            <div class="scroll-div" style="  width: 800px; background: #373737; height: 600px; overflow: hidden; overflow-y: scroll;">
+                  <div class="scroll-object" style="  color: white; font-family: cursive; font-size: 15px; padding: 20px;">
+                        <center>
+                        	<form method="post">
+                                    {% if data['election_up'] %}
+                                    <h1>UPDATE ELECTION</h1>
+                                    <table class="table" style="color: white">
+                                          <tr>
+                                                <th>Body</th>
+                                                <td><input type="text" name="body" value="{{data['election_up'][0]['body']}}" required class="form-control"></td>
+                                          </tr>
+                                    <tr>
+                                          <th>Election date</th>
+                                          <td><input type="date" name="edate" value="{{data['election_up'][0]['election_date']}}" required class="form-control"></td>
+                                    </tr>
+                              
+                                    <tr>
+                                          <td colspan='2' align='center'><input type="submit" value="UPDATE" name="updatez" class="btn btn-danger btn-sm"></td>
+                                    </tr>
+                                    </table>
+                                    {% else %}
+
+                        <h1>MANAGE ELECTION</h1>
+            		<table class="table" style="color: white">
+            			<tr>
+            				<th>Body</th>
+            				<td><input type="text" name="body" required class="form-control"></td>
+            			</tr>
+                        <tr>
+                        	<th>Election date</th>
+                        	<td><input type="date" name="edate" required class="form-control"></td>
+                        </tr>
+                        <tr>
+                        	<th>Declared on</th>
+                        	<td><input type="date" name="date" required class="form-control"></td>
+                        </tr>
+                        <tr>
+                        	<td colspan='2' align='center'><input type="submit" name="submit" class="btn btn-danger"></td>
+                        </tr>
+            		</table>
+                        {% endif %}
+                        <h1>ELECTIONS</h1>
+                        <table class="table" style="color: white">
+                              <tr>
+                                    <th>Sl.no</th>
+                                    <th>Body</th>
+                                    <th>Election date</th>
+                                    <th>Declared on</th>
+                                    <th>Status</th>
+                              </tr>
+                              {% for row in data['election'] %}
+                              <tr>
+                                    <td>{{loop.index}}</td>
+                                    <td>{{row['body']}}</td>
+                                    <td>{{row['election_date']}}</td>
+                                    <td>{{row['declared_on']}}</td>
+                                    <td>{{row['status']}}</td>
+                                    {% if row['status']=='pending' %}
+                                    <th><a href="?action=started&eid={{row['election_id']}}" class="btn btn-success btn-sm">START</a></th>
+                                    {% elif row['status']=='started'%}
+                                    <th><a href="?action=completed&eid={{row['election_id']}}" class="btn btn-warning btn-sm">COMPLETE</a></th>
+                                    {% endif %}
+                                    <td><a href="?action=delete&eid={{row['election_id']}}"class="btn btn-danger btn-sm">DELETE</a></td>
+                                    <td><a href="?action=update&eid={{row['election_id']}}" class="btn btn-success btn-sm">UPDATE</a></td>
+                              </tr>
+                              {% endfor %}
+                        </table>
+
+                        </form>
+
+                        </center>
+                  </div>
+            </div>
+      </div>
+{% include'footer.html' %}

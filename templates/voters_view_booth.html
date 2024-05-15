@@ -1,0 +1,30 @@
+{% include'voter_header.html' %}
+<section id="intro">
+<div class="intro-container wow fadeIn">
+	<div class="scroll-bg" style="background: #373737;  padding: 10px; border-radius: 20px;  width: 1000px; margin: 10% auto;">
+    	<div class="scroll-div" style="  width: 1000px; background: #373737; height: 600px; overflow: hidden; overflow-y: scroll;">
+    		<div class="scroll-object" style="  color: white; font-family: cursive; font-size: 15px; padding: 20px;">
+				<center>
+					<h1>BOOTHS</h1>
+					<form method="post">
+						<table class="table" style="color: white">
+							<tr>
+								<th>Sl.no</th>
+								<th>Booth</th>
+								
+							</tr>
+							{% for row in data['result'] %}
+							<tr>
+								<th>{{loop.index}}</th>
+								<th>{{row['booth']}}</th>
+							</tr>
+							{% endfor %}
+							
+						</table>
+						
+					</form>
+				</center>
+			</div>
+		</div>
+	</div>
+{% include'footer.html' %}

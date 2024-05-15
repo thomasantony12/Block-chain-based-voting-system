@@ -1,0 +1,59 @@
+{% include'district_header.html' %}
+<section id="intro">
+<div class="intro-container wow fadeIn">
+	<div class="scroll-bg" style="background: #373737;  padding: 10px; border-radius: 20px;  width: 1450px; margin: 10% auto;">
+    	<div class="scroll-div" style="  width: 1450px; background: #373737; height: 600px; overflow: hidden; overflow-y: scroll;">
+    		<div class="scroll-object" style="  color: white; font-family: cursive; font-size: 15px; padding: 20px;">
+				<center>		
+				<form >
+				<h1 style="color: white;">VOTERS</h1><br>
+					<table class="table" style="color: white;">
+						<tr>
+							<th>Sl no</th>
+							<th>Booth_name</th>
+							<th>Election_name</th>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Age</th>
+							<th>Dob</th>
+							<th>Place</th>
+							<th>City</th>
+							<th>State</th>
+							<th>Phone</th>
+							<th>Email</th>
+							<th></th>
+						</tr>
+						{% for row in data['voters']%}
+						<tr>
+							<td>{{loop.index}}</td>
+							<td>{{row['booth']}}</td>
+							<td>{{row['body']}}</td>
+							<td>{{row['first_name']}}</td>
+							<td>{{row['last_name']}}</td>
+							<td>{{row['age']}}</td>
+							<td>{{row['dob']}}</td>
+							<td>{{row['place']}}</td>
+							<td>{{row['city']}}</td>
+							<td>{{row['state']}}</td>
+							<td>{{row['phone']}}</td>
+							<td>{{row['email']}}</td>
+							<td>
+							{% if row['login_type']=='voter' %}Approved
+				            <a class="btn btn-warning btn-sm" href="?action=report&ids={{row['login_id']}}">Report</a>
+				            {% elif row['login_type']=='pending' %}Pending
+				            <a class="btn btn-warning btn-sm" href="?action=report&ids={{row['login_id']}}">Report</a>
+				            {% elif row['login_type']=='reported' %}Reported
+				            <a class="btn btn-success btn-sm">Reported</a>
+				            {% elif row['login_type']=='reject' %}
+				            <a class="btn btn-danger btn-sm">Rejeted</a>
+				            {% endif %}
+				        	</td>
+						</tr>
+						{% endfor %}	
+					</table>
+				</form>
+				</center>
+			</div>
+		</div>
+	</div>
+{% include'footer.html' %}

@@ -1,0 +1,74 @@
+{% include 'admin_header.html'%}
+<section id="intro">
+<div class="intro-container wow fadeIn">
+	<div class="scroll-bg" style="background: #373737;  padding: 10px; border-radius: 20px;  width: 800px; margin: 10% auto;">
+    	<div class="scroll-div" style="  width: 800px; background: #373737; height: 600px; overflow: hidden; overflow-y: scroll;">
+        	<div class="scroll-object" style="  color: white; font-family: cursive; font-size: 15px; padding: 20px;">
+				 <center>
+				    {% if data['booth_up'] %}
+				    <h1>UPDATE BOOTH</h1>
+					<table style="color: white ;" class="table">
+						<form method="post">
+							<tr>
+								<th>BOOTH NAME</th>
+								<td><input type="text" class="form-control" name="dname" required value="{{data['booth_up'][0]['booth']}}"></td>
+							</tr>
+							<tr align="center"> 
+								<td colspan="2"><input type="submit" name="submits" class="btn btn-success" value="UPDATE"></td>
+							</tr>
+						</form>
+					</table>
+					{% else %}
+					<h1>MANAGE BOOTH</h1>
+					<table style="color: white ;" class="table">
+						<form method="post">
+							<tr>
+								<th>DISTRICT NAME</th>
+								<td>
+									<select name="district" required type="text" class="form-control">
+										{% for row in data['district'] %}
+										<option value="{{row['district_id']}}">{{row['district']}}</option>
+										{% endfor %}
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<th>BOOTH NAME</th>
+								<td><input type="text" class="form-control" name="bname" required></td>
+							</tr>
+							<tr>
+								<th>USER NAME</th>
+								<td><input type="text" class="form-control" name="uname" required></td>
+							</tr>
+							<tr>
+								<th>PASSWORD</th>
+								<td><input type="password" class="form-control" name="password" required></td>
+							</tr>
+							<tr align="center"> 
+								<td colspan="2"><input type="submit" name="submit" class="btn btn-danger"></td>
+							</tr>
+						</form>
+					</table>
+					{% endif %}
+					<h1 style="margin-top: 150px;">ALL BOOTHS</h1>
+					<table style="color: white ;" class="table">
+						<tr border="2">
+							<th>Sl.no</th>
+							<th>Booth Name</th>
+						</tr>
+						{% for row in data['booth'] %}
+						<tr>
+							<td>{{ loop.index }}</td>
+							<td>{{ row['booth'] }}</td>
+							<td><a class="btn btn-danger btn-sm" href="?action=delete&ids={{row['login_id']}}">Delete</a></td>
+							<td><a class="btn btn-success btn-sm"href="?action=update&ids={{row['login_id']}}">Update</a></td>
+						</tr>
+						{% endfor %}
+					</table>
+				</center>
+			</div>
+		</div>
+	</div>
+
+  <main id="main">
+{% include 'footer.html' %}

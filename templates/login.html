@@ -1,0 +1,24 @@
+{% include 'header.html'%}
+<section id="intro">
+<div class="intro-container wow fadeIn">
+     <center>
+	<h1>LOGIN</h1>
+	<table style="color: white ;" class="table">
+		<form method="post">
+			<tr>
+				<th>User name</th>
+				<td><input type="text" class="form-control" name="uname"></td>
+			</tr>
+			<tr>
+				<th>Password</th>
+				<td><input type="password"  class="form-control" name="password"></td>
+			</tr>
+			<tr align="center"> 
+				<td colspan="2"><input type="submit" name="submit" class="btn btn-danger"></td>
+			</tr>
+		</form>
+	</table>
+</center>
+  <main id="main">
+ {% include 'footer.html' %}
+

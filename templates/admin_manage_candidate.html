@@ -1,0 +1,61 @@
+{% include 'admin_header.html'%}
+<section id="intro">
+<div class="intro-container wow fadeIn">
+    <div class="scroll-bg" style="background: #373737; border-radius: 20px;  width: 1500px; margin: 0% auto;">
+      <div class="scroll-div" style="  width: 1500px; background: #373737; height: 600px; overflow: hidden; overflow-y: scroll;">
+          <div class="scroll-object" style="  color: white; font-family: cursive; font-size: 15px;">
+            <center>
+            	   <h1>MANAGE CANDIDATE</h1>
+                <table style="color: white ;" class="table">
+                <tr>
+                  <th>Sl.no</th>
+                  <th>Election</th>
+                  <th>District</th>
+                  <th>Name</th>
+                  <th>Image</th>
+                  <th>Age</th>
+                  <th>DOB</th>
+                  <th>Place</th>    
+                  <th>City</th>
+                  <th>State</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                  <th>Aadhar number</th>
+                  <th>Candidate status</th><th></th>
+                </tr>
+                {% for row in data['candidate'] %}
+                <tr>
+                  <td>{{ loop.index }}</td>
+                  <td>{{ row['body'] }}</td>
+                  <td>{{ row['district'] }}</td>
+                  <td>{{ row['candidate'] }}</td>
+                  <td><img src="/{{ row['image']}}" height="70px" width="80px" ></td>
+                  <td>{{ row['age'] }}</td>
+                  <td>{{ row['dob'] }}</td>
+                  <td>{{ row['place'] }}</td>
+                  <td>{{ row['city'] }}</td>
+                  <td>{{ row['state'] }}</td>
+                  <td>{{ row['phone'] }}</td>
+                  <td>{{ row['email'] }}</td>
+                  <td>{{ row['aadhar'] }}</td>
+                  <td>
+                    {% if row['login_type']=='pending' %}New User
+                    <a class="btn btn-success btn-sm" href="?action=approve&ids={{row['login_id']}}">Approve</a>
+                    <a class="btn btn-danger btn-sm" href="?action=reject&ids={{row['login_id']}}">Reject</a>
+                    {% elif row['login_type']=='candidate' %}Approved
+                    <a class="btn btn-danger btn-sm" href="?action=reject&ids={{row['login_id']}}">Reject</a>
+                    {% elif row['login_type']=='reject' %}Rejected
+                    <a class="btn btn-success btn-sm" href="?action=approve&ids={{row['login_id']}}">Approve</a>
+                    {% endif %}
+                  </td>
+                  
+                </tr>
+                {% endfor %}
+                </table>
+            </center>
+          </div>
+      </div>
+    </div>
+
+  <main id="main">
+{% include 'footer.html' %}

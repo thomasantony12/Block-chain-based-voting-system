@@ -1,0 +1,90 @@
+{% include 'header.html'%}
+<section id="intro">
+<div class="intro-container wow fadeIn">
+	<div class="scroll-bg" style="background: #373737;  padding: 10px; border-radius: 20px;  width: 600px; margin: 10% auto;">
+		<div class="scroll-div" style="  width: 600px; background: #373737; height: 700px; overflow: hidden; overflow-y: scroll;">
+			<div class="scroll-object" style="  color: white; font-family: cursive; font-size: 15px; padding: 20px;">
+			<center>
+				<form method="post" enctype="multipart/form-data">
+					<h1>CANDIDATE REGISTRATION</h1>
+					<table style="color: white;" class="table">
+						<tr>
+				          <th>Election</th>
+				          <td><select name="election" class="form-control">
+				            {% for row in data['election'] %}
+				            <option value="{{row['election_id']}}">{{row['body']}}</option>
+				            {% endfor %}
+				          </select></td>
+				        </tr>
+				        <tr>
+				          <th>District</th>
+				          <td><select name="district" class="form-control">
+				            {% for row in data['district'] %}
+				            <option value="{{row['district_id']}}">{{row['district']}}</option>
+				            {% endfor %} 
+				          	</select>
+				       	  </td>
+				        </tr>
+						<tr>
+							<th>First name</th>
+							<td><input type="text" name="fname" class="form-control" required pattern="[a-zA-Z]{0,20}" title="Enter alphabets only"></td>
+						</tr>
+						<tr>
+							<th>Last name</th>
+							<td><input type="text" class="form-control" required pattern="[a-zA-Z]{0,20}" title="Enter alphabets only" name="lname"></td>
+						</tr>
+						<tr> 
+							<th>Photo</th>
+							<td><input type="file" class="form-control" required name="image"></td>
+						</tr>
+						<tr> 
+							<th>Age</th>
+							<td><input type="text" class="form-control" required pattern="[0-9]{0,3}" title="Enter your age eg:18" name="age"></td>
+						</tr>
+						<tr> 
+							<th>DOB</th>
+							<td><input type="date" required class="form-control" name="dob"></td>
+						</tr>
+						<tr> 
+							<th>Place</th>
+							<td><input type="text" class="form-control" required pattern="[a-zA-Z]{0,20}" title="Enter alphabets only" name="place"></td>
+						</tr>
+						<tr> 
+							<th>City</th>
+							<td><input type="text" class="form-control" required pattern="[a-zA-Z]{0,20}" title="Enter alphabets only" name="city"></td>
+						</tr>
+						<tr>
+							<th>State</th>
+							<td><input type="text" class="form-control" required pattern="[a-zA-Z]{0,20}" title="Enter alphabets only" name="state"></td>
+						</tr>
+						<tr>
+							<th>Phone number</th>
+							<td><input type="text" class="form-control" required pattern="[0-9]{0,10}" title="Enter your phone number eg:1234567890" name="phone"></td>
+						</tr>
+						<tr>
+							<th>Email</th> 
+							<td><input type="email" class="form-control" required name="email"></td>
+						</tr>
+					    <tr>
+				          <th>Aadhar card number</th>
+				          <td><input type="text" required pattern="[0-9]{0,12}" title="Enter your aadhar number eg:123456789012" class="form-control" name="aadhar"></td>
+				        </tr>
+						<tr>
+							<th>User name</th>
+							<td><input type="text" class="form-control" required title="Enter a username to login" name="uname"></td>
+						</tr>
+						<tr>
+							<th>Password</th>
+							<td><input type="password" class="form-control" required title="Enter a password" name="password"></td>
+						</tr>
+						<tr align="center"> 
+							<td colspan="2"><input type="submit" name="submit" class="btn btn-danger"></td>
+						</tr>
+					</table>
+				</form>
+			</center>
+		</div>
+	</div>
+</div>
+<main id="main">
+{% include 'footer.html' %}

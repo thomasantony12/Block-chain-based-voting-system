@@ -1,0 +1,39 @@
+{% include 'admin_header.html' %}
+<section id="intro">
+<div class="intro-container wow fadeIn">
+	<div class="scroll-bg" style="background: #373737;  padding: 10px; border-radius: 20px;  width: 900px; margin: 10% auto;">
+    	<div class="scroll-div" style="  width: 900px; background: #373737; height: 600px; overflow: hidden; overflow-y: scroll;">
+    		<div class="scroll-object" style="  color: white; font-family: cursive; font-size: 15px; padding: 20px;">
+				<center>
+				<h1>View result</h1>
+				<table style="color: white;" class="table">
+					<tr>
+					<th>Sno.</th>
+					<th>Election Body</th>
+					<th>Election Date</th>
+					<th>Declared on</th>
+					<th>Status</th>
+					<th>Result</th>
+					</tr>
+					{% for row in data['election'] %}
+					<tr>
+					<td>{{loop.index}}</td>
+					<td>{{row['body']}}</td>
+					<td>{{row['election_date']}}</td>
+					<td>{{row['declared_on']}}</td>
+					<td>{{row['status']}}</td>
+					{% if row['status']=='started' %}
+					<td><a class="btn btn-warning btn-sm" href="?action=count&id={{row['election_id']}}" style="color: black;">Real time result</a></td>
+					{% elif row['status']=='completed' %}
+					<td><a class="btn btn-warning btn-sm" style="color: black;" href="admin_view_result">View Result</a></td>
+					{% endif %}
+					</tr>
+					{% endfor %}		
+				</table>
+				</center>
+			</div>
+		</div>
+	</div>
+
+
+{% include 'footer.html' %}

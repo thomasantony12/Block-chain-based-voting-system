@@ -1,0 +1,37 @@
+{% include'admin_header.html' %}
+<section id="intro">
+<div class="intro-container wow fadeIn">
+	<div class="scroll-bg" style="background: #373737;  padding: 10px; border-radius: 20px;  width: 900px; margin: 10% auto;">
+    	<div class="scroll-div" style="  width: 900px; background: #373737; height: 600px; overflow: hidden; overflow-y: scroll;">
+    		<div class="scroll-object" style="  color: white; font-family: cursive; font-size: 15px; padding: 20px;">
+				<center>
+					<h1 style="color: white">REAL TIME RESULT OF</h1>
+					<form method="post">
+						<table class="table" style="color: white; width: 500px;">
+								{% for row in data['election']%}
+								<h1>{{row['body']}}</h1>
+								{% endfor %}
+								<h1>Election</h1>
+							<tr>
+								<th>Sl.no</th>
+								<th>District</th>
+								<th>Candidate</th>
+								<th>vote count</th>
+							</tr>
+							{% for row in data['status']%}
+							<tr>
+								<td>{{loop.index}}</td>
+								<td>{{row['district']}}</td>
+								<td>{{row['candidate']}}</td>
+								<td>{{row['COUNT']}}</td>
+							</tr>
+							{% endfor %}	
+						</table>
+						
+					</form>	
+				</center>
+			</div>
+		</div>
+	</div>
+ 
+{% include'footer.html' %}

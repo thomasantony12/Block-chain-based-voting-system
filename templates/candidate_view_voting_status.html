@@ -1,0 +1,52 @@
+{% include 'candidate_header.html'%}
+<section id="intro">
+<div class="intro-container wow fadeIn">
+    <div class="scroll-bg" style="background: #373737;  padding: 10px; border-radius: 20px;  width: 900px; margin: 10% auto;">
+        <div class="scroll-div" style="  width: 900px; background: #373737; height: 600px; overflow: hidden; overflow-y: scroll;">
+            <div class="scroll-object" style="  color: white; font-family: cursive; font-size: 15px; padding: 20px;">
+                <center>
+                    <h1 style="color: white;">VOTING STATUS</h1>
+                    {% if data['status'] %}
+                    <table style="color: white ;" class="table">
+                        <form method="post">
+                            <tr align="center">
+                                <th>Total voters voted</th>
+                            </tr>
+                            <tr align="center">
+                                {% for row in data['status']%}
+                                <td>{{row['COUNT']}}</td>
+                                {% endfor %} 
+                            </tr>
+                        </form>
+                    </table>
+                    {% else %}
+                    <form>
+                        <table  class="table" style="color: white; width: 600px;">
+                            <tr>
+                                <th>Sl.no</th>
+                                <th>District</th>
+                                <th>Image</th>
+                                <th>Candidate Name</th>
+                                <th>Total Vote</th>   
+                            </tr>
+                            {% for row in data['result']%}
+                            <tr>
+                                <td>{{loop.index}}</td>
+                                <td>{{row['district']}}</td>
+                                <td><img src="/{{ row['image']}}" height="70px" width="80px" ></td>
+                                <td>{{row['candidate_name']}}</td>
+                                <td>{{row['total_vote']}}</td>
+                            </tr>
+                            {% endfor %}
+                            <tr>
+                                <td colspan="3" align="center"><a href="candidate_view_boothwise" class="btn btn-danger">VIEW BOOTHWISE</a></td>
+                                <td colspan="2" align="center"><a href="candidate_view_districtwise" class="btn btn-danger">VIEW DISTRICTWISE</a></td>
+                            </tr>  
+                        </table>
+                    </form>
+                    {% endif %}
+                </center> 
+            </div>
+        </div>
+    </div>
+{% include 'footer.html' %}

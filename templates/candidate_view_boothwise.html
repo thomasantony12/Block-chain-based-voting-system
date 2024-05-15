@@ -1,0 +1,50 @@
+{% include'candidate_header.html' %}
+<section id="intro">
+<div class="intro-container wow fadeIn">
+	<div class="scroll-bg" style="background: #373737;  padding: 10px; border-radius: 20px;  width: 700px; margin: 10% auto;">
+    	<div class="scroll-div" style="  width: 700px; background: #373737; height: 600px; overflow: hidden; overflow-y: scroll;">
+      		<div class="scroll-object" style="  color: white; font-family: cursive; font-size: 15px; padding: 20px;">
+				<center>
+					<h1 style="color: white;">BOOTH WISE RESULT</h1><br>
+					<form>
+						<table class="table" style="color: white; width: 500px;">
+								<tr>
+								<th>Sl.no</th>
+								<th>Booths</th>
+								
+							</tr>
+							{% for row in data['booth']%}
+							<tr>
+								<td>{{loop.index}}</td>
+								<td>{{row['booth']}}</td>
+								<td><a href="?action=result&id={{row['booth_id']}}" class="btn btn-success">VIEW RESULT</a></td>
+							</tr>
+							{% endfor %}	
+						</table>
+					</form>
+					{% if data['booth_result'] %}
+						<center>
+							<h1 style="color: white;">RESULT</h1><br>
+							<form method="post">
+								<table  class="table" style="color: white; width: 500px;">
+									<tr>
+										<th>Sl.no</th>
+										<th>Candidate name</th>
+										<th>Total vote</th>
+									</tr>
+									{%for row in data['booth_result']%}
+									<tr>
+										<td>{{loop.index}}</td>
+										<td>{{row['cand_name']}}</td>
+										<td>{{row['vote']}}</td>
+									</tr>
+									{%endfor%}
+								</table>
+							</form>
+						</center>
+					{% endif %}
+				</center>
+			</div>
+		</div>
+	</div>
+{% include'footer.html' %}

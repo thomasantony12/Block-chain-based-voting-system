@@ -1,0 +1,42 @@
+{% include 'voter_header.html' %}
+<section id="intro">
+<div class="intro-container wow fadeIn">
+	<div class="scroll-bg" style="background: #373737;  padding: 10px; border-radius: 20px;  width: 1200px; margin: 10% auto;">
+    	<div class="scroll-div" style="  width: 1200px; background: #373737; height: 600px; overflow: hidden; overflow-y: scroll;">
+    		<div class="scroll-object" style="  color: white; font-family: cursive; font-size: 15px; padding: 20px;">
+				<center>
+						<h1 style="color: white">ELECTION STATUS</h1>
+						<br>
+					<form>
+						<table  class="table" style="color: white">
+							<tr>
+								<th>Sl.no</th>
+								<th>Name</th>
+								<th>Election date</th>
+								<th>Declared On</th>
+								<th>Status</th>
+				                
+				            </tr>
+				            {% for row in data['status']%}
+							<tr>
+								<td>{{loop.index}}</td>
+								<td>{{row['body']}}</td>
+								<td>{{row['election_date']}}</td>
+								<td>{{row['declared_on']}}</td>
+								<td>{{row['status']}}</td>
+								{% if row['status']=='started' %}
+								<td><a href="voter_make_vote?ids={{row['election_id']}}" class="btn btn-danger">MAKE VOTE</a></td>
+								{% elif row['status']=='completed'%}
+								<th><a href="voter_view_result?action=result&eid={{row['election_id']}}" class="btn btn-danger">VIEW RESULT</a></th>
+								{% endif %}
+
+							</tr>
+							{% endfor %}
+							
+						</table>
+					</form>
+				</center>
+			</div>
+		</div>
+	</div>
+{% include 'footer.html' %}

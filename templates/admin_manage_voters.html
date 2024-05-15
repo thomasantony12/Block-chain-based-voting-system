@@ -1,0 +1,71 @@
+{% include 'admin_header.html'%}
+<section id="intro">
+<div class="intro-container wow fadeIn">
+  <div class="scroll-bg" style="background: #373737;  padding: 10px; border-radius: 20px;  width: 1450px; margin: 10% auto;">
+    <div class="scroll-div" style="  width: 1450px; background: #373737; height: 600px; overflow: hidden; overflow-y: scroll;">
+      <div class="scroll-object" style="  color: white; font-family: cursive; font-size: 15px; padding: 20px;">
+        <center>
+        <form method="post">
+        	<h1>MANAGE VOTERS</h1>
+          <table class="table" style="width: 600px;">
+            <tr>
+              <th>AADHAR</th>
+              <td><input type="text" name="eno" pattern="[0-9]{0,12}" title="Enter a Username to login" required class="form-control"></td>
+            </tr>
+           
+            <tr>
+              <td align="center" colspan="2"><input type="submit" value="search" name="submit" class="btn btn-danger"></td>
+            </tr>
+          </table>
+              <table style="color: white " class="table">
+               <tr>
+                  <th>Sl no</th>
+                  <th>ELECTION</th>
+                  <th>BOOTH</th>
+                  <th>VOTER NAME</th>
+                  <th>AGE</th>
+                  <th>DOB</th>
+                  <th>PLACE</th>
+                  <th>CITY</th>
+                  <th>STATE</th>
+                  <th>PHONE</th>
+                  <th>EMAIL</th>
+                  <th>AADHAR</th>
+                  <th>VOTER STATUS</th>
+               </tr>
+              {% for row in data['votor'] %}
+                <tr>
+                  <td>{{ loop.index }}</td>
+                  <td>{{ row['body']}}</td>
+                  <td>{{ row['booth']}}</td>
+                  <td>{{ row['voter']}}</td>
+                  <td>{{ row['age']}}</td>
+                  <td>{{ row['dob']}}</td>
+                  <td>{{ row['place']}}</td>
+                  <td>{{ row['city']}}</td>
+                  <td>{{ row['state']}}</td>
+                  <td>{{ row['phone']}}</td>
+                  <td>{{ row['email']}}</td>
+                  <td>{{ row['aadhar']}}</td>
+                  <td>
+                    {% if row['login_type']=='pending' %}Pending
+                    <a class="btn btn-success btn-sm" href="?action=approve&ids={{row['login_id']}}">Approve</a>
+                    <a class="btn btn-danger btn-sm" href="?action=reject&ids={{row['login_id']}}">Reject</a>
+                    {% elif row['login_type']=='voter' %}Approved
+                    <a class="btn btn-danger btn-sm" href="?action=reject&ids={{row['login_id']}}">Reject</a>
+                    {% elif row['login_type']=='reject' %}Rejected
+                    <a class="btn btn-success btn-sm" href="?action=approve&ids={{row['login_id']}}">Approve</a>
+                    {% elif row['login_type']=='reported' %}Reported
+                    <a class="btn btn-warning btn-sm" href="?action=reject&ids={{row['login_id']}}">Reject</a>
+                    {% endif %}
+                  </td>
+                </tr>
+              {% endfor %}
+              </table>
+        </form>
+        </center>
+      </div>
+    </div>
+  </div>
+<main id="main">
+{% include 'footer.html' %}

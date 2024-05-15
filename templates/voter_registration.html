@@ -1,0 +1,107 @@
+{% include 'header.html'%}
+<section id="intro">
+<div class="intro-container wow fadeIn">
+	<div class="scroll-bg" style="background: #373737;  padding: 10px; border-radius: 20px;  width: 600px; margin: 10% auto;">
+		<div class="scroll-div" style="  width: 600px; background: #373737; height: 700px; overflow: hidden; overflow-y: scroll;">
+			<div class="scroll-object" style="  color: white; font-family: cursive; font-size: 15px; padding: 20px;">
+				<center>
+					{% if data['disup'] %}
+					    <h1>SELECT YOUR DISTRICT</h1>
+						<table style="color: white ;" class="table">
+							<form method="post">
+								<tr>
+									<th>DISTRICT</th>
+									<td><select name="disup" required class="form-control">
+						            {% for row in data['disup'] %}
+						            <option value="{{row['district_id']}}">{{row['district']}}</option>
+						            {% endfor %} 
+						          	</select>
+						       	  </td>
+								</tr>
+								<tr align="center"> 
+									<td colspan="2"><input type="submit" name="submitz" class="btn btn-success"></td>
+								</tr>
+							</form>
+						</table>
+					{% else %}
+					    <form method="post" enctype="multipart/form-data">
+					      	<h1>VOTER REGISTRATION</h1>
+						    <table style="color: white;" class="table">
+						        <tr>
+						          <th>Election</th>
+						          <td><select name="election" required class="form-control">
+						            {% for row in data['election'] %}
+						            <option value="{{row['election_id']}}">{{row['body']}}</option>
+						            {% endfor %}
+						          </select></td>
+						        </tr>
+						        <tr>
+						          <th>Booth</th>
+						          <td><select name="booth" required class="form-control">
+						            {% for row in data['booth'] %}
+						            <option value="{{row['booth_id']}}">{{row['booth']}}</option>
+						            {% endfor %} 
+						          	</select>
+						       	  </td>
+						        </tr>
+						        <tr>
+						          <th>First Name</th>
+						          <td><input type="text" name="fname" required pattern="[a-zA-Z]{0,20}" title="Enter alphabets only" class="form-control"></td>
+						        </tr>
+						        <tr>
+						          <th>Last Name</th>
+						          <td><input type="text" name="lname" required pattern="[a-zA-Z]{0,20}" title="Enter alphabets only" class="form-control"></td>
+						        </tr>
+						        
+						        <tr>
+						          <th>Date Of Birth</th>
+						          <td><input type="Date" name="dob" required class="form-control"></td>
+						        </tr>
+						         <tr>
+						          <th>Age</th>
+						          <td><input type="text" name="age" pattern="[0-9]{0,3}" required title="Enter your age" class="form-control"></td>
+						        </tr>
+						        <tr>
+						          <th>Place</th>
+						          <td><input type="text" name="place" pattern="[a-zA-Z]{0,20}" required title="Enter alphabets only" class="form-control"></td>
+						        </tr>
+						        <tr>
+						          <th>City</th> 
+						          <td><input type="text" name="city" required pattern="[a-zA-Z]{0,20}" title="Enter alphabets only" class="form-control"></td>  
+						        </tr>
+						        <tr>
+						          <th>State</th>
+						          <td><input type="text" name="state" title="Enter alphabets only" pattern="[a-zA-Z]{0,20}" required class="form-control"></td>
+						        </tr>
+						        <tr>
+						          <th>Phone</th>
+						          <td><input type="text" name="num" title="Enter your phone number eg:1234567890" required pattern="[0-9]{10}" class="form-control"></td>
+						        </tr>
+						        <tr>
+						          <th>Email</th>
+						          <td><input type="Email" name="email" required class="form-control"></td>
+						        </tr>
+						         <tr>
+						          <th>Aadhar card number</th>
+						          <td><input type="text" required title="Enter your aadhar number eg:123456789012" pattern="[0-9]{12}" class="form-control" name="aadhar"></td>
+						        </tr>
+						        <tr>
+						          <th>Username</th>
+						          <td><input type="text" name="uname" title="Enter a Username to login" class="form-control" required></td>
+						        </tr>
+						        <tr>
+						          <th>Password</th>
+						          <td><input type="Password" title="Enter a Password" name="psw" class="form-control" required></td>
+						        </tr>
+						        <tr>
+						          <td colspan="2" align="center"><input type="submit" name="submit" class="btn btn-danger btn-sm"></td>
+						        </tr>
+						    </table>
+					    </form>
+				    {% endif %}
+				</center>
+			</div>
+		</div>
+	</div>
+ <main id="main">
+{% include 'footer.html' %}
